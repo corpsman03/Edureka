@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+     ansible_python_interpreter: auto
+
+  tasks:
+  - name: building docker image
+    docker_image:
+        name: abctech
+        tag: 1.0
+        state: present
+        path: /opt/build/workspace/target
+
+
+  - name: login to dockerhub
+    docker_login:
+        username: manishmsawant
+        password: dckr_pat_wGKxcEsbi1QXApeLejEfEELh5HQ
+        registry: https://index.docker.io/v1/
+
+  - name: push image to dockerhub
+    docker_image:
+         name: abctech
+         repository: manishmsawant/abctech
+         tag: 1.0
+         push: yes
+
+  - name: remove local image
+    docker_image:
+         name: abctech:1.0
+         state: absent
