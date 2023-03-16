@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abctech
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: abctech-app
+  strategy:
+       type: RollingUpdate
+       rollingUpdate:
+               maxSurge: 1
+               maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: abctech-app
+    spec:
+      containers:
+        - name: abctech
+          image: manishmsawant/abctech:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: abctech-svc
+spec:
+  selector:
+    app: abctech-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 32010
