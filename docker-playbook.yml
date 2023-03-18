@@ -16,7 +16,7 @@
   - name: login to dockerhub
     docker_login:
         username: manishmsawant
-        password: dckr_pat_wGKxcEsbi1QXApeLejEfEELh5HQ
+        password: <password>
         registry: https://index.docker.io/v1/
 
   - name: push image to dockerhub
