@@ -1,7 +1,8 @@
 <html>
 <body>
-<h2>Welcome to Likewise india pvt.LTD </h2>
+<h2>Welcome to ABC technologies </h2>
 <h3>This is retail portal</h3>
+<h3>This is edureka industry grade project</h3>
 <button name="Add Product" value="Add Product" type="button" onclick="addProduct()">Add Product</button>  
 <script>  
 function addProduct(){  
